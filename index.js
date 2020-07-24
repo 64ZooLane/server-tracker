@@ -50,7 +50,7 @@ client.on("message", async message => {
         .setDescription(description[0] ? description.join("\n") : "No commands found :(")
         .setFooter("Do not include <> it indicates required options");
 
-        return message.channel.send(embed).catch(console.error);
+        return message.channel.send(embed).catch((e) => console.error(e.toString()));
     } else if (cmd == "config") {
         if (!message.member.permissions.has(config.permission.toUpperCase(), true)) return;
         let embed = new MessageEmbed().setColor("BLUE");
@@ -182,7 +182,7 @@ function update() {
             else {
                 await category.guild.channels.cache.filter(c => c.type == "text")
                     .filter(c => c.permissionsFor(category.guild.me).has("SEND_MESSAGES")).first()
-                    .send(":warning: Missing permissions to create channel for " + servername).catch(console.error);
+                    .send(":warning: Missing permissions to create channel for " + servername).catch((e) => console.error(e.toString()));
                 return process.exit();
             }
         })
