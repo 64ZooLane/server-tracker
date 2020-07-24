@@ -8,7 +8,7 @@ const defaultConfig = {
     prefix: "-",
     category: "",
     permission: "Administrator",
-    updatedelay: 60,
+    updatedelay: 5,
     servers: []
 }
 
