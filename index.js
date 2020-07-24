@@ -60,10 +60,12 @@ client.on("message", async message => {
         let embed = new MessageEmbed().setColor("BLUE");
         if (!message.member.permissions.has(config.permission.toUpperCase(), true)) return;
         if (!args[1] || !args[2]) {
-            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`));
+            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`))
+                .catch((e) => console.warn(e.toString()));
         }
         if (!["string", "boolean", "number"].includes(typeof config[args[1].toLowerCase()])) {
-            return message.channel.send(embed.setDescription(`No setting for \`${args[1]}\` could be found. Refer to \`${config.prefix}config\` for further details`));
+            return message.channel.send(embed.setDescription(`No setting for \`${args[1]}\` could be found. Refer to \`${config.prefix}config\` for further details`))
+                .catch((e) => console.warn(e.toString()));
         }
         else {
             if (typeof config[args[1]] !== "object") {
@@ -74,47 +76,47 @@ client.on("message", async message => {
                     config[args[1].toLowerCase()] = parseInt(args[2]);
                 }
                 updateConfig("./config.json");
-                return message.channel.send(embed.setDescription(`Successfully updated \`${args[1]}\` to \`${args[2]}\``));
+                return message.channel.send(embed.setDescription(`Successfully updated \`${args[1]}\` to \`${args[2]}\``)).catch((e) => console.warn(e.toString()));
             }
             else {
-                return message.channel.send(embed.setDescription(`You cannot update this setting!`));
+                return message.channel.send(embed.setDescription(`You cannot update this setting!`)).catch((e) => console.warn(e.toString()));
             }
         }
     } else if (cmd == "add") {
         if (!message.member.permissions.has(config.permission.toUpperCase(), true)) return;
         let embed = new MessageEmbed().setColor("BLUE");
         if (!args[1]) {
-            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`));
+            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`)).catch((e) => console.warn(e.toString()));
         }
         if (config.servers.filter(s => s.ip.toLowerCase() == args[1].toLowerCase())[0]) {
-            return message.channel.send(`The server \`${args[1]}\` is already being tracked!`);
+            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` is already being tracked!`)).catch((e) => console.warn(e.toString()));
         }
         else {
             config.servers.push({ip: args[1]});
             updateConfig("./config.json");
-            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` is now being tracked :thumbsup:`));
+            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` is now being tracked :thumbsup:`)).catch((e) => console.warn(e.toString()));
         }
     }
     else if (cmd == "remove") {
         if (!message.member.permissions.has(config.permission.toUpperCase(), true)) return;
         let embed = new MessageEmbed().setColor("BLUE");
         if (!args[1]) {
-            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`));
+            return message.channel.send(embed.setDescription(`Missing parameters. Refer to \`${config.prefix}help\` for further details`)).catch((e) => console.warn(e.toString()));
         }
         if (!config.servers.filter(s => s.ip.toLowerCase() == args[1].toLowerCase())[0]) {
-            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` isn't being tracked!`));
+            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` isn't being tracked!`)).catch((e) => console.warn(e.toString()));
         }
         else {
             config.servers.splice(config.servers.indexOf(config.servers.filter(s => s.ip.toLowerCase() == args[1].toLowerCase())[0]), 1);
             updateConfig("./config.json");
-            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` is no longer being tracked :thumbsup:`));
+            return message.channel.send(embed.setDescription(`The server \`${args[1]}\` is no longer being tracked :thumbsup:`)).catch((e) => console.warn(e.toString()));
         }
     }
     else if (cmd == "list") {
         if (!message.member.permissions.has(config.permission.toUpperCase(), true)) return;
         let embed = new MessageEmbed().setColor("BLUE")
         .addField("Tracked Servers", config.servers[0] ? `\`${config.servers.map(s => s.ip).join("`, `")}\`` : "None");
-        return message.channel.send(embed);
+        return message.channel.send(embed).catch((e) => console.warn(e.toString()));
     }
 })
 
@@ -160,29 +162,29 @@ function update() {
 
             if (channel) {
                 let message = await client.channels.cache.get(channel.id).messages.fetch(server.message).catch(() => {});
-                if (message) message.edit(embed);
+                if (message) message.edit(embed).catch((e) => console.warn(e.toString()));
                 else {
                     channel.send(embed).then(msg => {
                         config.servers[config.servers.indexOf(server)].message = msg.id;
                         updateConfig("./config.json");
-                    });
+                    }).catch((e) => console.warn(e.toString()));
                 }
             }
             else if (category.permissionsFor(category.guild.me).has("MANAGE_CHANNELS", true)) {
                 channel = await category.guild.channels.create(servername, {permissionOverwrites: category.permissionOverwrites})
-                    .then(c => c.setParent(category)).catch(() => {});
+                    .then(c => c.setParent(category)).catch((e) => console.warn(e.toString()));
 
                 if (channel) {
                     channel.send(embed).then(msg => {
                         config.servers[config.servers.indexOf(server)].message = msg.id;
                         updateConfig("./config.json");
-                    });
+                    }).catch((e) => console.warn(e.toString()));
                 }
             }
             else {
                 await category.guild.channels.cache.filter(c => c.type == "text")
                     .filter(c => c.permissionsFor(category.guild.me).has("SEND_MESSAGES")).first()
-                    .send(":warning: Missing permissions to create channel for " + servername).catch((e) => console.error(e.toString()));
+                    .send(":warning: Missing permissions to create channel for " + servername).catch((e) => console.warn(e.toString()));
                 return process.exit();
             }
         })
