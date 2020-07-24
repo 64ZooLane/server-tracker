@@ -18,7 +18,7 @@
 - `category` The category which tracking channels are made in (won't work without one)
 - `permission` The permission required for users to run commands
 - `updatedelay` The delay between each tracker update (seconds)
-- `averagelength` The higher this value, the more accurate the average results will be (recommended between 30-100)
+- `averagelength` The higher this value, the more accurate the `average` result will be (recommended no more than 30-100)
 
 ## Help
 If you require any support with setting it up, you can contact me directly via my discord `0.o#5319`
