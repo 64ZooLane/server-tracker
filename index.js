@@ -67,7 +67,12 @@ client.on("message", async message => {
         }
         else {
             if (typeof config[args[1]] !== "object") {
-                config[args[1].toLowerCase()] = args.slice(2).join(" ");
+                if (isNaN(args[2])) {
+                    config[args[1].toLowerCase()] = args.slice(2).join(" ");
+                }
+                else {
+                    config[args[1].toLowerCase()] = parseInt(args[2]);
+                }
                 updateConfig("./config.json");
                 return message.channel.send(embed.setDescription(`Successfully updated \`${args[1]}\` to \`${args[2]}\``));
             }
