@@ -3,19 +3,23 @@
   "version": "2.0.0",
   "description": "Track minecraft servers' player count, motd, increase/decrease and more",
   "main": "index.js",
-  "scripts": {
-    "setup": "npm install --save & node index.js"
-  },
-  "keywords": [
-    "Minecraft",
-    "Server",
-    "Tracker"
-  ],
-  "author": "64ZooLane",
-  "license": "ISC",
   "dependencies": {
     "discord.js": "^12.2.0",
     "minecraft-server-util": "^1.3.0",
     "moment": "^2.27.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "setup": "npm install & node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/64ZooLane/server-tracker.git"
+  },
+  "author": "64ZooLane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/64ZooLane/server-tracker/issues"
+  },
+  "homepage": "https://github.com/64ZooLane/server-tracker#readme"
 }
