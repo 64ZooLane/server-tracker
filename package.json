@@ -10,7 +10,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "setup": "npm install & node index.js"
+    "setup": "npm install & node index.js & pause"
   },
   "repository": {
     "type": "git",
