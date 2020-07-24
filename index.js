@@ -142,7 +142,7 @@ function update() {
                 config.servers[config.servers.indexOf(server)].record = [serverStatus.onlinePlayers, Date.now()];
             }
             config.servers[config.servers.indexOf(server)].average.unshift(serverStatus.onlinePlayers);
-            config.servers[config.servers.indexOf(server)].average = config.servers.filter(s => s == server)[0].average.slice(0, 10);
+            config.servers[config.servers.indexOf(server)].average = config.servers.filter(s => s == server)[0].average.slice(0, 30);
 
             let embed = new MessageEmbed()
             .setTitle(server.ip)
