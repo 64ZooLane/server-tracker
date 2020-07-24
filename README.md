@@ -19,7 +19,7 @@
 - `permission` The permission required for users to run commands
 - `updatedelay` The delay between each tracker update (seconds)
 
-## Extra
+## Help
 If you require any support with setting it up, you can contact me directly via my discord `0.o#5319`
 
 ### Credit
