@@ -20,7 +20,7 @@
 - `updatedelay` The delay between each tracker update (seconds)
 
 ## Extra
-If you require any support with setting up this programme, you can contact me via discord `0.o#5319`
+If you require any support with setting it up, you can contact me directly via my discord `0.o#5319`
 
 ### Credit
 Thank you to `Post#0069` for making the [original](https://github.com/postrequest69/minecraft-server-tracker-discord-bot) version and allowing me to make fork of it
