@@ -2,7 +2,7 @@
 - [NodeJS](https://nodejs.org/en/) is required to run this application
 
 1. Run the setup.bat file to install all npm packages and create the config files
-2. Open the token.json file and paste your token inbetween the ""
+2. Open the token.json file and paste your bot token between the speech marks
 3. Run the start.bat file and you're good to go
 
 ## Commands
