@@ -23,4 +23,4 @@
 If you require any support with setting it up, you can contact me directly via my discord `0.o#5319`
 
 ### Credit
-Thank you to `Post#0069` for making the [original](https://github.com/postrequest69/minecraft-server-tracker-discord-bot) version and allowing me to make fork of it
+Thank you to `Post#0069` for making the [original](https://github.com/postrequest69/minecraft-server-tracker-discord-bot) version and allowing me to make a rewrite
