@@ -1,5 +1,5 @@
 ## Installation
-- [NodeJS](https://nodejs.org/en/) is to run this application
+- [NodeJS](https://nodejs.org/en/) is required to run this application
 
 1. Run the setup.bat file to install all npm packages and create the config files
 2. Open the token.json file and paste your token inbetween the ""
